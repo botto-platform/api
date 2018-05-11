@@ -6,7 +6,7 @@
     "deploy:staging": "nowflow staging",
     "format": "prettier-eslint --no-semi \"**/*.js\" --write",
     "start": "node-dev index.js",
-    "test": "NODE_ENV=test && jest"
+    "test": "NODE_ENV=test && jest --forceExit --coverage"
   },
   "dependencies": {
     "firebase-admin": "^5.2.1",
@@ -17,8 +17,11 @@
     "webfunc": "^0.14.0"
   },
   "devDependencies": {
+    "babel-jest": "^22.4.3",
     "colors": "^1.1.2",
+    "coveralls": "^3.0.1",
     "eslint": "^4.18.1",
+    "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
     "node-dev": "^3.1.3",
     "node-mocks-http": "^1.5.8",
@@ -26,5 +29,12 @@
     "prettier-eslint-cli": "^4.7.1",
     "shelljs": "^0.7.8"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleFileExtensions": ["js"],
+    "collectCoverageFrom": ["src/**/*.js"]
+  }
 }
