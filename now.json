@@ -1,0 +1,15 @@
+{
+  "environment": {
+    "active": "default",
+    "default": {
+      "hostingType": "localhost"
+    },
+    "staging": {
+      "hostingType": "gcp",
+      "gcp": {
+        "functionName": "api",
+        "memory": 128
+      }
+    }
+  }
+}

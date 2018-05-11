@@ -1,0 +1,21 @@
+type Order {
+  id: ID!
+}
+
+input CreateOrderInput {
+  currency: String!
+  email: String!
+  items: [Boolean]
+}
+
+type Query {
+  # ### List orders
+  #
+  # _Arguments_
+  # - **limit**: Max number of orders to return
+  orders(limit: Int): [Order]
+}
+
+type Mutation {
+  createOrder(data: CreateOrderInput): Order!
+}
