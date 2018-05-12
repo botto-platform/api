@@ -1,18 +1,15 @@
-"use strict"
+const { STRIPE_CLIENT_ID, STRIPE_SECRET_KEY, STRIPE_PUBLIC_KEY } = process.env
 
 module.exports = {
-  // App name.
   appName: "b0tt0",
   port: 4000,
   stripe: {
-    clientId: "ca_CjEXuPBQbWvbsUWGIkz6sSclMnvLIcTK",
-    secretKey: "sk_test_UUaImoZfh5JMtRPiYAfbpJnf",
-    publishableKey: "pk_test_wz9EjKBqEABZWp9wNTYOgktc",
+    clientId: STRIPE_CLIENT_ID,
+    secretKey: STRIPE_SECRET_KEY,
+    publishableKey: STRIPE_PUBLIC_KEY,
     authorizeUri: "https://connect.stripe.com/auth/authorize",
     tokenUri: "https://connect.stripe.com/oauth/token"
   },
-
-  // Configuration for Google Cloud (only useful if you want to deploy to GCP).
   gcloud: {
     projectId: "botto-api"
   }

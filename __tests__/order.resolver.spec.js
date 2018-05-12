@@ -21,7 +21,9 @@ describe("Orders", () => {
       const actual = await createOrder(null, data, context)
 
       const { calls } = context.stripe.orders.create.mock
-      expect(calls[0][0]).toEqual({ ...data, metadata: { status: "created" } })
+      expect(calls[0][0]).toEqual(
+        Object.assign(data, { metadata: { status: "created" } }, {})
+      )
       expect(calls[0][1]).toEqual({ stripe_account: context.vendor.stripeId })
       done()
     })
