@@ -1,0 +1,5 @@
+service: default
+runtime: nodejs
+env: flex
+env_variables:
+  GOOGLE_CLOUD_PROJECT: 'botto-api'

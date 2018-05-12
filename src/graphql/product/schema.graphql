@@ -1,0 +1,46 @@
+# scalar Timestamp
+
+enum ProductType {
+  good
+  # service
+}
+
+enum InventoryType {
+  finite
+  infinite
+  bucket
+}
+
+enum InventoryValue {
+  in_stock
+  limited
+  out_of_stock
+}
+
+type Product {
+  id: ID!
+  active: Boolean
+  name: String!
+  type: ProductType!
+  description: String
+  caption: String
+  attributes: [String]
+  images: [String]
+  skus: [SKU]
+}
+
+type SKU {
+  id: ID!
+  active(state: Boolean = true): Boolean!
+  currency: Currency!
+  image: String
+  inventory: Inventory!
+  price: Int!
+  product: ID!
+}
+
+type Inventory {
+  type: InventoryType!
+  value: InventoryValue
+  quantity: Int
+}
