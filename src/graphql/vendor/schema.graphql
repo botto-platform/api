@@ -1,0 +1,11 @@
+type Query {
+  vendor: Vendor
+}
+
+type Vendor {
+  id: ID
+  email: String
+  stripeId: ID
+  orders: [Order!]!
+  products: [Product!]!
+}

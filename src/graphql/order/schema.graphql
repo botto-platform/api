@@ -1,0 +1,64 @@
+enum Currency {
+  sek
+}
+
+enum OrderStatus {
+  created
+  cancelled
+  paid
+  fulfilled
+  returned
+}
+
+type Mutation {
+  createOrder(email: String, currency: Currency!, items: [InputItem]): Order!
+  payOrder(orderId: ID!, vendorId: ID!, source: InputSource!): Order!
+  pushOrder(orderId: ID!, status: String!): Order!
+}
+
+input InputSource {
+  id: ID!
+  type: String!
+  livemode: Boolean!
+  status: String!
+}
+
+input InputItem {
+  amount: Int!
+  parent: ID!
+  currency: Currency
+  type: String
+  description: String
+  quantity: Int
+}
+
+type Order {
+  id: ID!
+  amount: Int!
+  application: String
+  application_fee: Int
+  charge: ID
+  # created: Timestamp
+  currency: Currency!
+  customer: ID!
+  email: String
+  items: [OrderItem]
+  status: OrderStatus!
+  metadata: Metadata!
+  # status: OrderStatus!
+  # status_transitions: Timestamp
+  livemode: Boolean
+}
+
+type OrderItem {
+  amount: Int!
+  currency: Currency!
+  description: String
+  parent: String
+  quantity: Int
+  type: String
+}
+
+type Metadata {
+  status: String
+}
