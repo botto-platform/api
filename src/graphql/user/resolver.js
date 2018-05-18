@@ -1,6 +1,9 @@
 module.exports = {
   Query: {},
   Mutation: {
-    connect: (parent, args, ctx) => ctx.models.User.connect(args, ctx)
+    connect: (parent, args, ctx) => {
+      if (!ctx.user) throw new Error("not authorized")
+      return ctx.models.User.connect(args, ctx)
+    }
   }
 }
