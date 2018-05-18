@@ -1,3 +1,13 @@
+type Mutation {
+  createOrder(email: String, currency: Currency!, items: [InputItem]): Order!
+  payOrder(orderId: ID!, source: InputSource!): Order!
+  pushOrder(orderId: ID!, status: String!): Order!
+}
+
+type Query {
+  orders(limit: Int): [Order!]!
+}
+
 enum Currency {
   sek
 }
@@ -8,12 +18,6 @@ enum OrderStatus {
   paid
   fulfilled
   returned
-}
-
-type Mutation {
-  createOrder(email: String, currency: Currency!, items: [InputItem]): Order!
-  payOrder(orderId: ID!, vendorId: ID!, source: InputSource!): Order!
-  pushOrder(orderId: ID!, status: String!): Order!
 }
 
 input InputSource {

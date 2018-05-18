@@ -1,0 +1,18 @@
+type Mutation {
+  connect(code: String!): String!
+}
+
+type User {
+  id: ID
+  email: String
+  stripeId: ID
+  role: [Role]
+  orders: [Order!]!
+  products: [Product]
+}
+
+enum Role {
+  admin
+  customer
+  vendor
+}
