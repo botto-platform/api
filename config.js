@@ -1,8 +1,10 @@
 const { STRIPE_CLIENT_ID, STRIPE_SECRET_KEY, STRIPE_PUBLIC_KEY } = process.env
 
 module.exports = {
-  appName: "b0tt0",
-  port: 4000,
+  firebase: {
+    databaseURL: "https://botto-api.firebaseio.com",
+    credential: require("./key.json")
+  },
   stripe: {
     clientId: STRIPE_CLIENT_ID,
     secretKey: STRIPE_SECRET_KEY,

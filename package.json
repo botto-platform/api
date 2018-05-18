@@ -1,16 +1,17 @@
 {
   "name": "botto-api",
   "scripts": {
-    "start": "node -r dotenv/config src/index.js",
+    "start": "nodemon -r dotenv/config app.js",
     "dev": "npm-run-all --parallel start playground",
     "test:gcloud": "repo-tools test app",
-    "test":
-      "NODE_ENV=test && jest --forceExit --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "debug": "nodemon -e js,graphql -x node --inspect src/index.js",
+    "test": "NODE_ENV=test && jest --forceExit --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "debug": "nodemon -e js,graphql -x node --inspect app.js",
     "playground": "graphql playground"
   },
   "dependencies": {
     "dotenv": "^5.0.1",
+    "firebase-admin": "^5.12.0",
+    "graphql": "^0.13.2",
     "graphql-yoga": "1.9.2",
     "merge-graphql-schemas": "^1.5.1",
     "request": "^2.85.0",
@@ -20,8 +21,10 @@
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "^2.3.0",
     "babel-jest": "^22.4.3",
+    "body-parser": "^1.18.3",
     "coveralls": "^3.0.1",
     "graphql-cli": "2.15.9",
+    "ip": "^1.1.5",
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
     "nodemon": "1.17.3",
@@ -32,7 +35,9 @@
     "requiresProjectId": true,
     "test": {
       "app": {
-        "args": ["src/index.js"],
+        "args": [
+          "app.js"
+        ],
         "msg": "Hello, world!"
       }
     }
@@ -45,7 +50,11 @@
     "transform": {
       ".*": "<rootDir>/node_modules/babel-jest"
     },
-    "moduleFileExtensions": ["js"],
-    "collectCoverageFrom": ["src/**/*.js"]
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   }
 }
