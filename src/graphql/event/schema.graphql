@@ -1,0 +1,11 @@
+type Query {
+  events: [Event!]!
+}
+
+type Event {
+  id: String!
+  created: Int
+  livemode: Boolean
+  pending_webhooks: Int
+  type: String
+}

@@ -8,15 +8,17 @@ module.exports = ({ auth, db, stripe }) => {
     resolvers,
     directiveResolvers,
     context: async ({ request }) => {
-      const token = (request.headers.authentication || "").split("Bearer ")[1]
+      const { authorization = "", vendor } = request.headers
+      const token = authorization.split("Bearer ")[1]
       const user = token ? await auth.verifyIdToken(token) : null
+
       return {
         auth,
         db,
         models,
         stripe,
         user,
-        vendor: request.headers.vendor // Is it secure to expose Stripe account ids?
+        vendor // Is it secure to expose Stripe account ids?
       }
     }
   })
@@ -26,6 +28,8 @@ module.exports = ({ auth, db, stripe }) => {
   // https://stripe.com/docs/webhooks
   server.post("/stripe/events", async (req, res) => {
     throw new Error("Not implemented")
+    // Push google analytics event
+    // Push notification
   })
 
   // TODO: Add Apollo Engine

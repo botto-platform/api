@@ -1,14 +1,25 @@
 type Mutation {
+  signup(email: String!, password: String!): AuthPayload!
+  signin(email: String!, password: String!): AuthPayload!
   connect(code: String!): String!
 }
 
+type Query {
+  user: User!
+}
+
+type AuthPayload {
+  token: String!
+}
+
 type User {
-  id: ID
+  id: ID!
   email: String
-  stripeId: ID
+  stripe_user_id: ID
   role: [Role]
   orders: [Order!]!
-  products: [Product]
+  products: [Product!]!
+  livemode: Boolean
 }
 
 enum Role {

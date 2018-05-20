@@ -5,7 +5,7 @@ type Mutation {
 }
 
 type Query {
-  orders(limit: Int): [Order!]!
+  orders(limit: Int): [Order!]
 }
 
 enum Currency {

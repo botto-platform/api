@@ -1,5 +1,9 @@
 # scalar Timestamp
 
+type Query {
+  products(limit: Int): [Product!]!
+}
+
 enum ProductType {
   good
   # service

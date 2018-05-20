@@ -1,10 +1,9 @@
 module.exports = {
   Order: {
-    list: ({ limit = 10 }, ctx) =>
+    list: ({ stripe_account, limit = 10 }, ctx) =>
       ctx.stripe.orders
-        .list({ limit }, { stripe_account: ctx.vendor })
+        .list({ limit }, { stripe_account })
         .then(({ data }) => data),
-
     create: ({ currency, email, items }, ctx) =>
       ctx.stripe.orders.create(
         {
